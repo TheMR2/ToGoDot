@@ -1,0 +1,99 @@
+@tool
+extends BoxContainer
+
+var data :Array= []
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Load()
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	
+	pass
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	$VBoxContainer/Panel.custom_minimum_size.y = value
+	pass # Replace with function body.
+
+
+func _on_add_pressed() -> void:
+	Add_Mission()
+	pass # Replace with function body.
+
+func Add_Mission():
+	var mission : CheckBox = CheckBox.new()
+	var missionName :String = $Misson.text
+	mission.text = missionName
+	mission.pressed.connect(Clear)
+	$VBoxContainer/Panel/Missions_List_Container/Missions_List.add_child(mission)
+	$Misson.clear()
+	pass
+
+
+func Clear() -> void:
+	var tween = create_tween()
+	#await get_tree().create_timer(3).timeout
+	var children = $VBoxContainer/Panel/Missions_List_Container/Missions_List.get_children()
+	for child in children:
+		if child.button_pressed == true:
+			tween.tween_property(child,"modulate",Color(1.0, 1.0, 1.0, 0.0),0.3)
+			await tween.finished
+			child.queue_free()
+			#child.queue_free()
+			data.clear()
+			Save()
+			pass
+	pass # Replace with function body.
+
+
+
+
+
+
+
+
+func Save():
+	var path = FileAccess.open("res://addons/ToGOList/Save_Data/save.json",FileAccess.WRITE)
+	var json = JSON.stringify(data)
+	path.store_string(json)
+	path.close()
+	pass
+
+
+
+func Load():
+	if FileAccess.file_exists("res://addons/ToGOList/Save_Data/save.json"):
+		var path = FileAccess.open("res://addons/ToGOList/Save_Data/save.json",FileAccess.READ)
+		var stringfyData = path.get_as_text()
+		path.close()
+		var Data = JSON.parse_string(stringfyData)
+		data = Data
+		for CBox in data:
+			var Mission = CheckBox.new()
+			Mission.text = CBox
+			$VBoxContainer/Panel/Missions_List_Container/Missions_List.add_child(Mission)
+			Mission.pressed.connect(Clear)
+			pass
+		pass
+func _on_save_pressed() -> void:
+	var children = $VBoxContainer/Panel/Missions_List_Container/Missions_List.get_children()
+	for child in children:
+		data.append(child.text)
+		pass
+	Save()
+	data.clear()
+	pass # Replace with function body.
+
+
+func _on_info_pressed() -> void:
+	$Window.popup()
+	pass # Replace with function body.
+
+
+func _on_window_close_requested() -> void:
+	$Window.hide()
+	pass # Replace with function body.
