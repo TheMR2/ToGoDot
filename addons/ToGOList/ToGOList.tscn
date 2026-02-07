@@ -79,6 +79,7 @@ theme_override_font_sizes/font_size = 16
 text = "Info"
 
 [node name="Add" type="Button" parent="Buttons_Container" unique_id=37936582]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 16
