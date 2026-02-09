@@ -13,7 +13,6 @@ config_version=5
 config/name="ToGOList"
 config/tags=PackedStringArray("godot_plugins")
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="uid://b1tip86ctxeil"
 
 [display]
 
@@ -24,7 +23,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GitGodot/plugin.cfg", "res://addons/ToGOList/plugin.cfg", "res://addons/ToGoDot/plugin.cfg")
+enabled=PackedStringArray("res://addons/GitGodot/plugin.cfg", "res://addons/ToGoDot/plugin.cfg")
 
 [physics]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cexprfkklefv2"]
 
 [ext_resource type="Script" uid="uid://dlqmckxwkbwcu" path="res://addons/ToGoDot/to_go_dot.gd" id="1_0yfha"]
-[ext_resource type="Texture2D" uid="uid://b1tip86ctxeil" path="res://addons/ToGoDot/ToGOList.svg" id="2_0ip6q"]
+[ext_resource type="Texture2D" uid="uid://ddkkok2kn3tew" path="res://addons/ToGoDot/ToGoDot.svg" id="2_0yfha"]
 
 [node name="BoxContainer" type="BoxContainer" unique_id=1326112533]
 anchors_preset = 15
@@ -88,7 +88,6 @@ title = "Info"
 initial_position = 3
 size = Vector2i(500, 500)
 current_screen = 0
-visible = false
 max_size = Vector2i(500, 500)
 content_scale_mode = 1
 content_scale_aspect = 4
@@ -96,8 +95,8 @@ content_scale_stretch = 1
 
 [node name="ToGoList" type="Sprite2D" parent="Window" unique_id=937061056]
 position = Vector2(239, 80)
-scale = Vector2(0.18249993, 0.18249993)
-texture = ExtResource("2_0ip6q")
+scale = Vector2(0.59, 0.59)
+texture = ExtResource("2_0yfha")
 
 [node name="GitPage" type="LinkButton" parent="Window" unique_id=73504267]
 offset_left = 184.0
