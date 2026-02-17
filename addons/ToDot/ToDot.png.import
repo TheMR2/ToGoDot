@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bu2mqe6qgbjav"
-path="res://.godot/imported/ToGoDot.png-4323255ca0f6d649de934303eabfec14.ctex"
+path="res://.godot/imported/ToDot.png-d2f669db35afb0d73add797046a5c9c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ToGoDot/ToGoDot.png"
-dest_files=["res://.godot/imported/ToGoDot.png-4323255ca0f6d649de934303eabfec14.ctex"]
+source_file="res://addons/ToDot/ToDot.png"
+dest_files=["res://.godot/imported/ToDot.png-d2f669db35afb0d73add797046a5c9c2.ctex"]
 
 [params]
 

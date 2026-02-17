@@ -7,18 +7,21 @@ var currentTab : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Note_Load()
 	Load()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+
 	if $VBoxContainer2/Task.text == "":
-		$Buttons_Container/Add.disabled = true
+		if get_current_tap():
+			$Buttons_Container/Add.disabled = true
 		pass
 	else:
-		$Buttons_Container/Add.disabled = false
+		if get_current_tap():
+			$Buttons_Container/Add.disabled = false
 	pass
 
 
@@ -78,12 +81,14 @@ func Load():
 		for details in data:
 			var tab_name = details[0]
 			var Tasks = details[1]
-			var tab = TabBar.new()
+			var tab = ScrollContainer.new()
+			var scroll = VBoxContainer.new()
+			tab.add_child(scroll)
 			tab.name = tab_name
 			for CBox in Tasks:
 				var Task = CheckBox.new()
 				Task.text = CBox
-				tab.add_child(Task)
+				tab.get_child(0).add_child(Task)
 				Task.pressed.connect(Clear)
 				pass
 			$VBoxContainer/Panel/TabContainer.add_child(tab)
@@ -127,7 +132,7 @@ func _on_add_tap_pressed() -> void:
 
 func _on_task_name_pressed() -> void:
 	$"VBoxContainer/Panel/Add_Tap/Task's Tab Name/Task_Name".disabled = true
-	var tab = TabBar.new()
+	var tab = ScrollContainer.new()
 	tab.add_child(VBoxContainer.new())
 	tab.name = $"VBoxContainer/Panel/Add_Tap/Task's Tab Name/TextEdit".text
 	$VBoxContainer/Panel/TabContainer.add_child(tab)
@@ -151,4 +156,30 @@ func _on_tab_container_tab_selected(tab: int) -> void:
 	pass # Replace with function body.
 func get_current_tap():
 	return $VBoxContainer/Panel/TabContainer.get_current_tab_control()
+	pass
+
+
+func _on_remove_tab_pressed() -> void:
+	get_current_tap().queue_free()
+	for details in data:
+		if details[0] == get_current_tap().name:
+			data.erase(details)
+			Save()
+			pass
+		pass
+	pass # Replace with function body.
+
+
+func _on_note_text_changed(new_text: String) -> void:
+	var Note = FileAccess.open("user://Note.json",FileAccess.WRITE)
+	var stringfytext = JSON.stringify($VBoxContainer2/Note.text)
+	Note.store_string(stringfytext)
+	Note.close()
+	pass # Replace with function body.
+func Note_Load():
+	var Note = FileAccess.open("user://Note.json",FileAccess.READ)
+	var text = Note.get_as_text()
+	
+	$VBoxContainer2/Note.text = JSON.parse_string(text)
+	print(text)
 	pass

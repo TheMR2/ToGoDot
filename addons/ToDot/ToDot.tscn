@@ -1,7 +1,15 @@
 [gd_scene format=3 uid="uid://cexprfkklefv2"]
 
-[ext_resource type="Script" uid="uid://dlqmckxwkbwcu" path="res://addons/ToGoDot/to_go_dot.gd" id="1_0yfha"]
-[ext_resource type="Texture2D" uid="uid://ddkkok2kn3tew" path="res://addons/ToGoDot/ToGoDot.svg" id="2_0yfha"]
+[ext_resource type="Script" uid="uid://dlqmckxwkbwcu" path="res://addons/ToDot/ToDot.gd" id="1_o2nvy"]
+[ext_resource type="Texture2D" uid="uid://ddkkok2kn3tew" path="res://addons/ToDot/ToDot.svg" id="2_xwn4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ip6q"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yfha"]
+bg_color = Color(0, 0, 0, 0.18039216)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="BoxContainer" type="BoxContainer" unique_id=1326112533]
 anchors_preset = 15
@@ -9,10 +17,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0yfha")
+script = ExtResource("1_o2nvy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2132959628]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1314352635]
 layout_mode = 2
@@ -21,21 +30,9 @@ text = "Tasks"
 
 [node name="Panel" type="Panel" parent="VBoxContainer" unique_id=100728948]
 clip_contents = true
-custom_minimum_size = Vector2(599.98, 100)
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Missions_List_Container" type="ScrollContainer" parent="VBoxContainer/Panel" unique_id=1009711185]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 31.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Missions_List" type="VBoxContainer" parent="VBoxContainer/Panel/Missions_List_Container" unique_id=1158770584]
-layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Panel" unique_id=2014037584]
 layout_mode = 1
@@ -46,23 +43,8 @@ offset_right = -24.0
 offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ip6q")
 tabs_rearrange_group = 0
-
-[node name="Clear" type="Button" parent="VBoxContainer/Panel" unique_id=1702708270]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -54.0
-offset_right = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 10
-text = "Clear"
 
 [node name="Save2" type="Button" parent="VBoxContainer/Panel" unique_id=1885801309]
 layout_mode = 1
@@ -71,21 +53,24 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -54.0
-offset_right = 300.0
+offset_left = -299.99
+offset_top = -66.0
+offset_right = 276.01
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_0yfha")
 text = "Save"
 
 [node name="Add_Tap" type="Button" parent="VBoxContainer/Panel" unique_id=637970867]
 layout_mode = 0
 offset_left = 576.0
 offset_right = 600.0
-offset_bottom = 33.0
+offset_bottom = 31.0
 text = "+"
+flat = true
 
 [node name="Task\'s Tab Name" type="Window" parent="VBoxContainer/Panel/Add_Tap" unique_id=776561398]
 oversampling_override = 1.0
@@ -110,43 +95,32 @@ theme_override_font_sizes/font_size = 32
 disabled = true
 text = "OK"
 
-[node name="Add_Tap2" type="Button" parent="VBoxContainer/Panel" unique_id=1450219953]
+[node name="Remove_Tab" type="Button" parent="VBoxContainer/Panel" unique_id=1450219953]
 layout_mode = 0
-offset_left = 575.5
-offset_top = 33.0
-offset_right = 599.5
-offset_bottom = 66.0
+offset_left = 576.0
+offset_top = 39.0
+offset_right = 600.0
+offset_bottom = 70.0
 text = "-"
-
-[node name="Task\'s Tab Name" type="Window" parent="VBoxContainer/Panel/Add_Tap2" unique_id=958907479]
-oversampling_override = 1.0
-title = "Task's Tab Name"
-position = Vector2i(138, 216)
-size = Vector2i(275, 225)
-visible = false
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name" unique_id=1970424400]
-offset_left = 21.0
-offset_top = 37.0
-offset_right = 251.0
-offset_bottom = 78.0
-placeholder_text = "Task's Tab Name..."
-
-[node name="Task_Name" type="Button" parent="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name" unique_id=227361433]
-offset_left = 81.0
-offset_top = 125.0
-offset_right = 190.0
-offset_bottom = 178.0
-theme_override_font_sizes/font_size = 32
-disabled = true
-text = "OK"
+flat = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=484349425]
 custom_minimum_size = Vector2(444.285, 0)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_horizontal = 3
 
-[node name="Task" type="LineEdit" parent="VBoxContainer2" unique_id=1134322828]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2" unique_id=1631305803]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+
+[node name="Note" type="LineEdit" parent="VBoxContainer2" unique_id=1134322828]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Note"
+
+[node name="Task" type="LineEdit" parent="VBoxContainer2" unique_id=1393657647]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -155,6 +129,7 @@ placeholder_text = "Task"
 
 [node name="Buttons_Container" type="VBoxContainer" parent="." unique_id=1034618195]
 layout_mode = 2
+size_flags_horizontal = 3
 alignment = 2
 
 [node name="Info" type="Button" parent="Buttons_Container" unique_id=1729389666]
@@ -186,7 +161,7 @@ content_scale_stretch = 1
 [node name="ToGoList" type="Sprite2D" parent="Window" unique_id=937061056]
 position = Vector2(239, 80)
 scale = Vector2(0.59, 0.59)
-texture = ExtResource("2_0yfha")
+texture = ExtResource("2_xwn4b")
 
 [node name="GitPage" type="LinkButton" parent="Window" unique_id=73504267]
 offset_left = 184.0
@@ -236,14 +211,12 @@ text = "The_MR"
 uri = "https://the-mr.netlify.app/"
 
 [connection signal="tab_selected" from="VBoxContainer/Panel/TabContainer" to="." method="_on_tab_container_tab_selected"]
-[connection signal="pressed" from="VBoxContainer/Panel/Clear" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/Save2" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/Add_Tap" to="." method="_on_add_tap_pressed"]
 [connection signal="text_changed" from="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/Panel/Add_Tap/Task\'s Tab Name/Task_Name" to="." method="_on_task_name_pressed"]
-[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap2" to="." method="_on_add_tap_pressed"]
-[connection signal="text_changed" from="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name/TextEdit" to="." method="_on_text_edit_text_changed"]
-[connection signal="pressed" from="VBoxContainer/Panel/Add_Tap2/Task\'s Tab Name/Task_Name" to="." method="_on_task_name_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/Remove_Tab" to="." method="_on_remove_tab_pressed"]
+[connection signal="text_changed" from="VBoxContainer2/Note" to="." method="_on_note_text_changed"]
 [connection signal="editing_toggled" from="VBoxContainer2/Task" to="." method="_on_misson_editing_toggled"]
 [connection signal="pressed" from="Buttons_Container/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="Buttons_Container/Add" to="." method="_on_add_pressed"]

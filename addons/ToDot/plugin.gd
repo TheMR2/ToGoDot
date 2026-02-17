@@ -4,9 +4,9 @@ extends EditorPlugin
 var dock:EditorDock
 func _enter_tree() -> void:
 	dock = EditorDock.new()
-	dock.name = "ToGoDot"
+	dock.name = "ToDot"
 	dock.default_slot = EditorDock.DOCK_SLOT_BOTTOM
-	var dockContent = preload("res://addons/ToGoDot/ToGoDot.tscn").instantiate()
+	var dockContent = preload("res://addons/ToDot/ToDot.tscn").instantiate()
 	dock.add_child(dockContent)
 	add_dock(dock)
 	# Initialization of the plugin goes here.
